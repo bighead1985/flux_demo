@@ -9,7 +9,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /craft
+      - path: /metrics
         backend:
           serviceName: springbootdemo
           servicePort: 9000
