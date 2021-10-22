@@ -15,8 +15,8 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 8080
-    targetPort: 80
+    port: 9000
+    targetPort: 8080
   selector:
     app: springbootdemo
 ---
@@ -43,4 +43,4 @@ spec:
         imagePullPolicy: IfNotPresent
         name: springbootdemo
         ports:
-        - containerPort: 80
+        - containerPort: 8080
