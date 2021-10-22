@@ -1,0 +1,11 @@
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: springbootdemo
+  namespace: demo
+spec:
+  host: springbootdemo
+  subsets:
+    - labels:
+        version: v1
+      name: v1
