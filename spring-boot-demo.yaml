@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: springbootdemo
+  namespace: demo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springbootdemo
+  namespace: demo
+  labels:
+    app: springbootdemo
+    service: springbootdemo
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 80
+  selector:
+    app: springbootdemo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springbootdemo
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springbootdemo
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: springbootdemo
+        version: v1
+    spec:
+      serviceAccountName: springbootdemo
+      containers:
+      - image: docker.io/nickbest85/springboot_demo
+        imagePullPolicy: IfNotPresent
+        name: springbootdemo
+        ports:
+        - containerPort: 80
